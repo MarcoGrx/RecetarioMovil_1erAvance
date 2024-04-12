@@ -5,31 +5,65 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/fondo_aplicacion">
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo" /> <!-- Reemplazar logo con archivo de imagen -->
+        android:layout_width="300dp"
+        android:layout_height="240dp"
+        android:src="@mipmap/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/nombreAppTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de la aplicación"
-        android:textSize="24sp"
+        android:text="@string/nombre_aplicacion"
         android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="48sp"/>
 
     <TextView
         android:id="@+id/descripcionAppTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Breve descripción de la aplicación"
+        android:text="@string/descripcion_aplicacion"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="32sp" />
 
+    <EditText
+        android:id="@+id/et_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32sp"
+        android:layout_gravity="center"
+        android:hint="Correo"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/et_contrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32sp"
+        android:layout_gravity="center"
+        android:hint="Contrasena"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32sp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="Entrar" />
 
 
 </LinearLayout>
