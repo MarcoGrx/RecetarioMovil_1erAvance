@@ -2,4 +2,7 @@
     <string name="app_name">RecetarioMovil_1erAvance</string>
     <string name="nombre_aplicacion">Chef 24/7</string>
     <string name="descripcion_aplicacion">Tu compañero culinario de confianza</string>
+    <string name="TextoViewCrearCuenta">¿No tienes cuenta aún? Crea una.</string>
+    <string name="Entrar">Entrar</string>
+    <string name="TextoViewOlvideContrasena">¿Olvidaste tu contrasena?</string>
 </resources>

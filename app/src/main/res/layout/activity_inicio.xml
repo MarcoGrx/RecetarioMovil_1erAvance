@@ -22,7 +22,8 @@
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:textSize="48sp"/>
+        android:textSize="48sp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/descripcionAppTextView"
@@ -31,40 +32,64 @@
         android:text="@string/descripcion_aplicacion"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:layout_marginTop="32sp" />
+        android:layout_marginTop="32sp"
+        android:gravity="center" />
 
     <EditText
         android:id="@+id/et_correo"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
         android:layout_gravity="center"
         android:hint="Correo"
+        android:gravity="center"
+        android:textColorHint="@color/white"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <EditText
         android:id="@+id/et_contrasena"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32sp"
+        android:layout_marginTop="16sp"
         android:layout_gravity="center"
-        android:hint="Contrasena"
+        android:hint="Contraseña"
+        android:gravity="center"
+        android:textColorHint="@color/white"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/tv_olvideContrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/TextoViewOlvideContrasena"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="end"/>
+
     <Button
         android:id="@+id/btn_entrar"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:text="Entrar" />
+        android:text="@string/Entrar" />
 
+    <TextView
+        android:id="@+id/tv_crearCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/TextoViewCrearCuenta"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center" />
 
 </LinearLayout>
 
