@@ -5,4 +5,5 @@
     <string name="TextoViewCrearCuenta">¿No tienes cuenta aún? Crea una.</string>
     <string name="Entrar">Entrar</string>
     <string name="TextoViewOlvideContrasena">¿Olvidaste tu contrasena?</string>
+    <string name="btnVolver">Volver</string>
 </resources>

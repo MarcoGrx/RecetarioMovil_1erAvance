@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RecetarioMovil_1erAvance"
         tools:targetApi="31">
         <activity
+            android:name=".nuevaRecetaActivity"
+            android:exported="false" />
+        <activity
             android:name=".RecuperacionActivity"
             android:exported="false" />
         <activity

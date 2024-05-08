@@ -1,27 +1,54 @@
 package com.example.recetariomovil_1eravance
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 
 class DetalleRecetaActivity : AppCompatActivity() {
 
+    lateinit var btnVolver: Button
+    lateinit var tvNombre: TextView
+    lateinit var tvIngredientes: TextView
+    lateinit var tvTiempo: TextView
+    lateinit var tvDificultad: TextView
+    lateinit var tvTipoDieta: TextView
+    lateinit var tvProcedimiento: TextView
+    lateinit var imagenReceta: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        var receta: Receta? = null
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_receta)
+
+        var receta: Receta? = null
+        btnVolver = findViewById(R.id.btn_volver)
+        tvNombre = findViewById(R.id.nombreTextView)
+        tvIngredientes = findViewById(R.id.ingredientesTextView)
+        tvTiempo = findViewById(R.id.tiempoTextView)
+        tvDificultad = findViewById(R.id.dificultadTextView)
+        tvTipoDieta = findViewById(R.id.tipoDietaTextView)
+        tvProcedimiento = findViewById(R.id.procedimientoTextView)
+        imagenReceta = findViewById(R.id.imagenReceta)
+
+        btnVolver.setOnClickListener {
+            finish()
+        }
 
         if(intent.hasExtra("receta")){
             receta = intent.getSerializableExtra("receta") as Receta
         }
 
         if (receta != null) {
-            val tvNombre: TextView = findViewById(R.id.nombreTextView)
-            val tvIngredientes: TextView = findViewById(R.id.ingredientesTextView)
-            val tvTiempo: TextView = findViewById(R.id.tiempoTextView)
-            val tvDificultad: TextView = findViewById(R.id.dificultadTextView)
-            val tvTipoDieta: TextView = findViewById(R.id.tipoDietaTextView)
-
+            tvNombre.text = receta.nombre
+            tvIngredientes.text = receta.ingredientes.joinToString(", ")
+            tvTiempo.text = receta.tiempoPreparacion
+            tvDificultad.text = receta.dificultad
+            tvTipoDieta.text = receta.tipoDieta
+            tvProcedimiento.text = receta.procedimientos?.joinToString("\n\n") ?: "No hay procedimientos"
+            imagenReceta.setImageResource(receta.imagen)
         }
     }
 }

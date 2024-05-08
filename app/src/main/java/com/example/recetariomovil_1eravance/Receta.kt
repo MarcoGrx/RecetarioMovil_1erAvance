@@ -5,6 +5,6 @@ data class Receta(val nombre: String,
                   val tiempoPreparacion: String,
                   val dificultad: String,
                   val tipoDieta: String,
-                  val imagen: Int? = null,
-                  val procedimientos: String? = null):java.io.Serializable
+                  val imagen: Int,
+                  val procedimientos: List<String>? = null):java.io.Serializable
 
