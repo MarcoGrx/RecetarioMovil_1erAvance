@@ -29,6 +29,18 @@
             android:src="@drawable/subir_imagen"
             android:layout_marginBottom="16dp"/>
 
+        <Button
+            android:id="@+id/btn_subir_imagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subir imagen"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="@color/fondo_boton"
+            android:layout_below="@+id/imagenReceta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"/>
+
         <EditText
             android:id="@+id/nombreEditText"
             android:layout_width="match_parent"
@@ -75,7 +87,7 @@
             android:id="@+id/procedimientoEditText"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:hint="Procedimiento (paso a paso)"
+            android:hint="Procedimiento (Enumerar paso a paso)"
             android:inputType="textMultiLine"
             android:textColor="@color/white"
             android:gravity="bottom|start"/>

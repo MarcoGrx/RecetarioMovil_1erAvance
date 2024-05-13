@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 
 class ListaRecetasActivity : AppCompatActivity(){
 
@@ -14,15 +15,26 @@ class ListaRecetasActivity : AppCompatActivity(){
     private lateinit var viewManager: RecyclerView.LayoutManager
     lateinit var btnNuevaReceta: Button
     lateinit var btnFavoritos: Button
+    lateinit var et_buscador: EditText
     lateinit var btnBuscar: Button
 
+    private var allRecetas: MutableList<Receta> = mutableListOf()
+    private var recetas: MutableList<Receta> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_recetas)
 
         btnNuevaReceta = findViewById(R.id.btn_nueva_receta)
         btnFavoritos = findViewById(R.id.btn_favoritos)
+        et_buscador = findViewById(R.id.et_buscador)
         btnBuscar = findViewById(R.id.btn_buscar)
+
+        btnBuscar.setOnClickListener(){
+        val buscarTexto= et_buscador.text.toString()
+            recetas.clear()
+            recetas.addAll(allRecetas.filter { it.nombre.contains(buscarTexto,ignoreCase = true) })
+            viewAdapter.notifyDataSetChanged()
+        }
 
         btnNuevaReceta.setOnClickListener {
             val intent = Intent(this, nuevaRecetaActivity::class.java)
@@ -140,7 +152,8 @@ class ListaRecetasActivity : AppCompatActivity(){
             imagen = R.drawable.tacos_veganos
         )
 
-        val recetas = listOf(receta1, receta2, receta3, receta4, receta5)
+        allRecetas = listOf(receta1, receta2, receta3, receta4, receta5).toMutableList()
+        recetas= ArrayList(allRecetas)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = RecetaAdaptador(recetas)
