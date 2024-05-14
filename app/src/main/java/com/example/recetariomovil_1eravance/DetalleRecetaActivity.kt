@@ -43,12 +43,12 @@ class DetalleRecetaActivity : AppCompatActivity() {
 
         if (receta != null) {
             tvNombre.text = receta.nombre
-            tvIngredientes.text = receta.ingredientes.joinToString(", ")
+            tvIngredientes.text = receta.ingredientes
             tvTiempo.text = receta.tiempoPreparacion
             tvDificultad.text = receta.dificultad
             tvTipoDieta.text = receta.tipoDieta
-            tvProcedimiento.text = receta.procedimientos?.joinToString("\n\n") ?: "No hay procedimientos"
-            imagenReceta.setImageResource(receta.imagen)
+            tvProcedimiento.text = receta.procedimientos
+            //imagenReceta.setImageResource(receta.imagen)
         }
     }
 }
