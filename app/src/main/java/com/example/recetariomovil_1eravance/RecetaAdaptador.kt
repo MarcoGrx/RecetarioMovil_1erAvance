@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecetaAdaptador(private val recetas: List<Receta>) : RecyclerView.Adapter<RecetaAdaptador.RecetaViewHolder>() {
+class RecetaAdaptador(private var recetas: List<Receta>) : RecyclerView.Adapter<RecetaAdaptador.RecetaViewHolder>() {
+
+
 
     private var onClickListener: OnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecetaViewHolder {
@@ -21,6 +23,7 @@ class RecetaAdaptador(private val recetas: List<Receta>) : RecyclerView.Adapter<
         holder.tiempoTextView.text = currentReceta.tiempoPreparacion
         holder.dificultadTextView.text = currentReceta.dificultad
         holder.tipoDietaTextView.text = currentReceta.tipoDieta
+        holder.procedimientoTextView.text = currentReceta.procedimientos.toString()
 
         holder.itemView.setOnClickListener {
             if (onClickListener != null) {
@@ -41,12 +44,19 @@ class RecetaAdaptador(private val recetas: List<Receta>) : RecyclerView.Adapter<
         fun onClick(position: Int, model: Receta)
     }
 
+    fun Recetas(recetas: List<Receta>){
+        this.recetas = recetas
+        notifyDataSetChanged()
+    }
+
     class RecetaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreTextView: TextView = itemView.findViewById(R.id.nombreTextView)
         val ingredientesTextView: TextView = itemView.findViewById(R.id.ingredientesTextView)
         val tiempoTextView: TextView = itemView.findViewById(R.id.tiempoTextView)
         val dificultadTextView: TextView = itemView.findViewById(R.id.dificultadTextView)
         val tipoDietaTextView: TextView = itemView.findViewById(R.id.tipoDietaTextView)
+        val procedimientoTextView: TextView = itemView.findViewById(R.id.procedimientoTextView)
     }
 
 }
+

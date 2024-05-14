@@ -7,19 +7,30 @@ import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ListaRecetasActivity : AppCompatActivity(){
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewAdapter: RecetaAdaptador
     private lateinit var viewManager: RecyclerView.LayoutManager
     lateinit var btnNuevaReceta: Button
     lateinit var btnFavoritos: Button
     lateinit var et_buscador: EditText
     lateinit var btnBuscar: Button
 
+    lateinit var list : List<String>
+    lateinit var list2 : List<String>
+    var img : Int = 0
+    private val db = FirebaseFirestore.getInstance()
+    private val coleccion = db.collection("recetas")
+    private lateinit var adaptador: RecetaAdaptador
+
+
     private var allRecetas: MutableList<Receta> = mutableListOf()
     private var recetas: MutableList<Receta> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_recetas)
@@ -30,7 +41,7 @@ class ListaRecetasActivity : AppCompatActivity(){
         btnBuscar = findViewById(R.id.btn_buscar)
 
         btnBuscar.setOnClickListener(){
-        val buscarTexto= et_buscador.text.toString()
+            val buscarTexto= et_buscador.text.toString()
             recetas.clear()
             recetas.addAll(allRecetas.filter { it.nombre.contains(buscarTexto,ignoreCase = true) })
             viewAdapter.notifyDataSetChanged()
@@ -162,7 +173,13 @@ class ListaRecetasActivity : AppCompatActivity(){
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
+            recyclerView.adapter = adapter
+
         }
+
+        consultar()
+
+
 
         (viewAdapter as RecetaAdaptador).setOnClickListener(object : RecetaAdaptador.OnClickListener {
             override fun onClick(position: Int, model: Receta) {
@@ -174,4 +191,32 @@ class ListaRecetasActivity : AppCompatActivity(){
         })
     }
 
-}
+    private fun consultar() {
+        coleccion.get()
+            .addOnSuccessListener {
+                val lista = mutableListOf<Receta>()
+                for (document in it){
+                    val dificultad = document.get("Dificultad").toString()
+                    val ingredientes = document.get("Ingredientes")
+                    list = ingredientes as List<String>
+                    val nombre = document.get("Nombre").toString()
+                    val procedimiento = document.get("Procedimiento")
+                    list2 = procedimiento as List<String>
+                    val tiempo = document.get("Tiempo").toString()
+                    val tipoDieta = document.get("TipoDieta").toString()
+                    val imagen = document.get("Imagen")
+                    img = imagen as Int
+
+                    if (dificultad.isEmpty() && ingredientes.isEmpty() && nombre.isEmpty() && procedimiento.isEmpty() && tiempo.isEmpty() && tipoDieta.isEmpty() && img.toString().isEmpty()){
+                        Toast.makeText(this, "No se pueden mostrar las recetas, por favor intentalo mas tarde", Toast.LENGTH_SHORT).show()
+                    }else{
+                        val plato = Receta(nombre,ingredientes,tiempo,dificultad,tipoDieta,imagen,procedimiento)
+                        lista.add(plato)
+                    }
+                }
+
+                adaptador.Recetas(lista)
+
+
+            }
+    }
