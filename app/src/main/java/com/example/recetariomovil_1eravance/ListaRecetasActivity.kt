@@ -81,7 +81,6 @@ class ListaRecetasActivity : AppCompatActivity() {
     }
 
     private fun consultar(){
-        val lista = mutableListOf<Receta>()
         coleccion.get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -103,10 +102,14 @@ class ListaRecetasActivity : AppCompatActivity() {
                         imagen = imagen
                     )
 
-                    lista.add(plato)
+                    allRecetas.add(plato)
                 }
 
-                recyclerView.adapter = RecetaAdaptador(lista)
+                // Llenar recetas con todos los datos al principio
+                recetas.addAll(allRecetas)
+
+                // Notificar al adaptador que los datos han cambiado
+                viewAdapter.notifyDataSetChanged()
 
             }
             .addOnFailureListener { exception ->

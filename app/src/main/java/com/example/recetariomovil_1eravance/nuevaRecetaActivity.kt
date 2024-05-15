@@ -97,7 +97,8 @@ class nuevaRecetaActivity : AppCompatActivity() {
         }
 
         btnVolver.setOnClickListener {
-            finish()
+            intent = Intent(this, ListaRecetasActivity::class.java)
+            startActivity(intent)
         }
 
         btnCancelarReceta.setOnClickListener {

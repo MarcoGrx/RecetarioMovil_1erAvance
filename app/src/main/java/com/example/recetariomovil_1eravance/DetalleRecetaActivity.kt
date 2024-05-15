@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class DetalleRecetaActivity : AppCompatActivity() {
 
@@ -47,9 +48,24 @@ class DetalleRecetaActivity : AppCompatActivity() {
             tvTiempo.text = receta.tiempoPreparacion
             tvDificultad.text = receta.dificultad
             tvTipoDieta.text = receta.tipoDieta
-            tvProcedimiento.text = receta.procedimientos
-            //imagenReceta.setImageResource(receta.imagen)
+
+            val procedimientosFormateados = formatProcedimientos(receta.procedimientos)
+            tvProcedimiento.text = procedimientosFormateados
+
+            Picasso.get().load(receta.imagen).into(imagenReceta)
         }
+    }
+
+    fun formatProcedimientos(procedimientos: String): String {
+        val pasos = procedimientos.split(".")
+        val builder = StringBuilder()
+
+        pasos.forEachIndexed { index, paso ->
+            val pasoNumerado = "${index + 1}) $paso\n\n"
+            builder.append(pasoNumerado)
+        }
+
+        return builder.toString()
     }
 }
 
