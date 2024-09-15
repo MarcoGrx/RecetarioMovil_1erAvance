@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "466418730195",
+    "project_id": "chef-247",
+    "storage_bucket": "chef-247.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466418730195:android:c053d41c1d44ac94a08026",
+        "android_client_info": {
+          "package_name": "com.example.recetariomovil_1eravance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC5w2YrrLiuJj93fOBTqQLJf2PEEwx8qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
